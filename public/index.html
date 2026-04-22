@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>妙語說書人 線上對戰</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══ 首頁 ═══ -->
+<div id="screen-home" class="screen active">
+  <div class="hero">
+    <div class="logo-cards">
+      <div class="logo-card c1">🌙</div>
+      <div class="logo-card c2">✨</div>
+      <div class="logo-card c3">🌊</div>
+    </div>
+    <h1>妙語說書人</h1>
+    <p class="subtitle">線上多人創意對戰</p>
+    <p class="desc">3–6 人 · 每人說一個故事，猜出說書人的牌</p>
+  </div>
+  <div class="home-form">
+    <input type="text" id="player-name" placeholder="輸入你的名字" maxlength="12" autocomplete="off">
+    <button class="btn primary" id="btn-create">✦ 建立房間</button>
+    <div class="or-divider"><span>或</span></div>
+    <div class="join-row">
+      <input type="text" id="room-code-input" placeholder="輸入6位房間碼" maxlength="6" autocomplete="off">
+      <button class="btn secondary" id="btn-join">加入</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 等待室 ═══ -->
+<div id="screen-lobby" class="screen">
+  <div class="lobby-top">
+    <h2>等待室</h2>
+    <div class="room-badge">
+      <span>房間碼</span>
+      <strong id="display-room-code"></strong>
+      <button class="btn-icon" id="btn-copy-code" title="複製">📋</button>
+    </div>
+  </div>
+  <div id="lobby-players" class="player-grid"></div>
+  <div class="lobby-bottom">
+    <p id="lobby-status"></p>
+    <button class="btn primary" id="btn-start" style="display:none">▶ 開始遊戲</button>
+    <button class="btn ghost" id="btn-leave">離開房間</button>
+  </div>
+</div>
+
+<!-- ═══ 遊戲 ═══ -->
+<div id="screen-game" class="screen">
+  <div class="game-header">
+    <span id="round-label">第 1 回合</span>
+    <span id="phase-badge" class="phase-badge"></span>
+    <div id="score-bar"></div>
+  </div>
+
+  <div id="info-row" class="info-row">
+    <div id="storyteller-chip" class="chip hidden">📖 說書人：<strong id="storyteller-name"></strong></div>
+    <div id="clue-chip" class="chip clue-chip hidden">💬 線索：<strong id="clue-text"></strong></div>
+  </div>
+
+  <div id="status-msg" class="status-msg"></div>
+
+  <!-- 桌面牌 -->
+  <div id="table-section" class="card-section hidden">
+    <h3 class="section-title">桌面牌堆 <span id="table-hint"></span></h3>
+    <div id="table-cards" class="cards-row"></div>
+  </div>
+
+  <!-- 計分結果 -->
+  <div id="scoring-section" class="scoring-section hidden">
+    <div id="scoring-results"></div>
+    <button class="btn primary" id="btn-next-round" style="display:none">下一回合 ▶</button>
+  </div>
+
+  <!-- 手牌 -->
+  <div id="hand-section" class="card-section hidden">
+    <h3 class="section-title" id="hand-title">你的手牌</h3>
+    <div id="hand-cards" class="cards-row scrollable"></div>
+  </div>
+
+  <!-- 線索輸入 -->
+  <div id="clue-input-section" class="clue-input-section hidden">
+    <p>選一張牌，輸入你的線索：</p>
+    <div class="clue-input-row">
+      <input type="text" id="clue-input" placeholder="一個詞語、一句話、或一個聲音…" maxlength="50">
+      <button class="btn primary" id="btn-submit-clue" disabled>發送</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 結局 ═══ -->
+<div id="screen-end" class="screen">
+  <div class="end-wrap">
+    <div class="trophy-row">🏆</div>
+    <h2>遊戲結束！</h2>
+    <div id="final-scores" class="final-scores"></div>
+    <div class="faith-box">
+      <p class="bible">「神就照著自己的形像造人。」（創世記 1:27）</p>
+      <p>同一張圖畫，每個人看見的故事都不一樣——<br>你獨特的想像力，是上帝賜予你的禮物。</p>
+    </div>
+    <div class="end-actions">
+      <button class="btn primary" id="btn-play-again">再玩一次</button>
+      <button class="btn ghost" id="btn-home">回首頁</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ 提示 & 載入 ═══ -->
+<div id="toast" class="toast hidden"></div>
+<div id="loading" class="loading hidden"><div class="spinner"></div></div>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>
