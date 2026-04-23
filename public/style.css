@@ -109,7 +109,7 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#c084fc,#f
   background:var(--bg2);border-radius:50px;padding:4px 10px;font-size:.8rem
 }
 .score-val{font-weight:700;color:var(--accent)}
-.score-name{color:var(--dim);max-width:50px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.score-name{color:var(--dim);max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
 /* ═══ Info Row ═══ */
 .info-row{width:100%;max-width:680px;display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
@@ -185,6 +185,24 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#c084fc,#f
   color:var(--text);font-size:.95rem;outline:none
 }
 .clue-input-row input:focus{border-color:var(--primary)}
+
+/* ═══ Scoring Cards Layout ═══ */
+.scoring-cards-row{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;padding:4px 0}
+.score-card-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;width:var(--card-w)}
+.score-owner{
+  font-size:.8rem;font-weight:600;text-align:center;
+  background:var(--bg2);border:1px solid rgba(168,85,247,.35);
+  padding:3px 10px;border-radius:20px;white-space:nowrap;max-width:130px;
+  overflow:hidden;text-overflow:ellipsis
+}
+.score-owner.is-storyteller{border-color:rgba(34,197,94,.6);color:var(--success)}
+.score-voters{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%}
+.voter-tag{
+  font-size:.75rem;color:var(--accent);background:rgba(245,158,11,.1);
+  border:1px solid rgba(245,158,11,.3);border-radius:12px;
+  padding:2px 8px;white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis
+}
+.no-vote{font-size:.72rem;color:var(--dim);font-style:italic}
 
 /* ═══ Scoring ═══ */
 .scoring-section{width:100%;max-width:680px;margin-bottom:16px}

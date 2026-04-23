@@ -440,9 +440,9 @@ function renderGame(room, players, me, storytellerName, iAmStoryteller) {
   const labels = { storytelling:'說書人出牌', submitting:'玩家選牌', voting:'投票中', scoring:'計分結果' };
   $('phase-badge').textContent = labels[room.phase] || '';
 
-  // 分數列
+  // 分數列（顯示完整名字）
   $('score-bar').innerHTML = players.map(p =>
-    `<div class="score-item"><span>${pEmoji(p.name)}</span><span class="score-name">${p.name.slice(0,4)}</span><span class="score-val">${p.score}</span></div>`
+    `<div class="score-item"><span>${pEmoji(p.name)}</span><span class="score-name">${p.name}</span><span class="score-val">${p.score}</span></div>`
   ).join('');
 
   // 說書人 chip
@@ -519,22 +519,54 @@ function renderScoring(room, players, me, storytellerName) {
   $('table-section').classList.remove('hidden');
   $('scoring-section').classList.remove('hidden');
 
-  // 統計票數
+  // 統計：每個牌主被哪些人投票
   const votesByOwner = {};
-  players.forEach(p => { if (p.vote) votesByOwner[p.vote] = (votesByOwner[p.vote] || []).concat(pEmoji(p.name)); });
+  players.forEach(p => {
+    if (p.vote) {
+      if (!votesByOwner[p.vote]) votesByOwner[p.vote] = [];
+      votesByOwner[p.vote].push(p.name);
+    }
+  });
 
-  // 桌面牌（顯示 owner）
-  const container = $('table-cards'); container.innerHTML = '';
+  // 桌面牌：顯示牌主 + 投票者名字
+  const container = $('table-cards');
+  container.className = 'scoring-cards-row';
+  container.innerHTML = '';
   room.tableCards.forEach(tc => {
     const isS = tc.owner === storytellerName;
-    const votes = votesByOwner[tc.owner] || [];
-    const el = makeCard(tc.cardId, {
-      label: tc.owner,
-      votes: votes.length,
-      voterEmojis: votes.join(' '),
-      isStoryteller: isS
-    });
-    container.appendChild(el);
+    const voterNames = votesByOwner[tc.owner] || [];
+
+    const wrap = document.createElement('div');
+    wrap.className = 'score-card-wrap';
+
+    // 牌面（說書人牌有綠色光暈）
+    wrap.appendChild(makeCard(tc.cardId, { isStoryteller: isS }));
+
+    // 牌主名稱
+    const ownerDiv = document.createElement('div');
+    ownerDiv.className = `score-owner${isS ? ' is-storyteller' : ''}`;
+    ownerDiv.textContent = `${pEmoji(tc.owner)} ${tc.owner}${isS ? ' 👑' : ''}`;
+    wrap.appendChild(ownerDiv);
+
+    // 投票者列表
+    const votersDiv = document.createElement('div');
+    votersDiv.className = 'score-voters';
+    if (voterNames.length > 0) {
+      voterNames.forEach(n => {
+        const tag = document.createElement('span');
+        tag.className = 'voter-tag';
+        tag.textContent = `${pEmoji(n)} ${n}`;
+        votersDiv.appendChild(tag);
+      });
+    } else {
+      const empty = document.createElement('span');
+      empty.className = 'no-vote';
+      empty.textContent = '無人投票';
+      votersDiv.appendChild(empty);
+    }
+    wrap.appendChild(votersDiv);
+
+    container.appendChild(wrap);
   });
 
   // 計分摘要
@@ -566,7 +598,9 @@ function renderHand(hand, onSelect) {
 }
 
 function renderTable(tableCards, clickable, onClick) {
-  const c = $('table-cards'); c.innerHTML = '';
+  const c = $('table-cards');
+  c.className = 'cards-row scrollable';
+  c.innerHTML = '';
   tableCards.forEach(tc => c.appendChild(makeCard(tc.cardId, {
     clickable, onClick: clickable ? () => onClick(tc.owner) : null
   })));
