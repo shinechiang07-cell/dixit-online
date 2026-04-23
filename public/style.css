@@ -141,8 +141,7 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#c084fc,#f
   width:var(--card-w);min-width:var(--card-w);height:var(--card-h);
   border-radius:12px;cursor:default;position:relative;
   box-shadow:0 4px 20px rgba(0,0,0,.5);transition:.2s;
-  overflow:visible;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  flex-shrink:0
+  overflow:hidden;flex-shrink:0
 }
 .game-card.clickable{cursor:pointer}
 .game-card.clickable:hover{transform:translateY(-6px) scale(1.04);box-shadow:0 12px 32px rgba(168,85,247,.5)}
@@ -152,9 +151,8 @@ h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#c084fc,#f
 }
 .game-card.storyteller-reveal{box-shadow:0 0 0 3px var(--success),0 8px 24px rgba(34,197,94,.4)}
 
-.card-inner{display:flex;flex-direction:column;align-items:center;justify-content:space-around;height:100%;padding:10px 6px}
-.card-main{font-size:2.4rem;line-height:1}
-.card-sides{font-size:1rem;opacity:.8}
+.card-scene{position:absolute;inset:0;border-radius:12px;overflow:hidden}
+.card-elem{position:absolute;transform:translate(-50%,-50%);line-height:1;user-select:none;pointer-events:none}
 
 .card-label{
   position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);
