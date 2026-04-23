@@ -1,24 +1,24 @@
 /* ═══ Variables ═══ */
 :root {
-  --bg: #0f0a1e;
-  --bg2: #1a1030;
-  --bg3: #241840;
-  --primary: #a855f7;
-  --primary-dark: #7c3aed;
-  --accent: #f59e0b;
-  --text: #f0e6ff;
-  --dim: #8b7ba8;
-  --danger: #ef4444;
-  --success: #22c55e;
+  --bg: #fff7ed;
+  --bg2: #ffedd5;
+  --bg3: #fed7aa;
+  --primary: #7c3aed;
+  --primary-dark: #5b21b6;
+  --accent: #b45309;
+  --text: #1c0a00;
+  --dim: #92400e;
+  --danger: #dc2626;
+  --success: #15803d;
   --card-w: 110px;
   --card-h: 160px;
   --radius: 14px;
-  --shadow: 0 8px 32px rgba(0,0,0,.6);
+  --shadow: 0 8px 32px rgba(0,0,0,.25);
 }
 
 /* ═══ Base ═══ */
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;background-image:radial-gradient(circle at 20% 20%,#ffe0b2 0%,transparent 60%),radial-gradient(circle at 80% 80%,#ffd08a 0%,transparent 50%)}
 
 /* ═══ Screens ═══ */
 .screen{display:none;min-height:100vh;padding:20px}
@@ -36,7 +36,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .logo-card.c1{background:linear-gradient(135deg,#1a1a4e,#4a3a8a);transform:rotate(-15deg) translateX(-50px);top:0}
 .logo-card.c2{background:linear-gradient(135deg,#4a0a8a,#9b19f5);transform:rotate(0deg);top:-10px;z-index:2}
 .logo-card.c3{background:linear-gradient(135deg,#0d4a8a,#1a6fb7);transform:rotate(15deg) translateX(50px);top:0}
-h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#c084fc,#f0abfc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:10px}
+h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,#7c3aed,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:10px}
 .subtitle{color:var(--accent);font-size:1rem;margin-top:4px;letter-spacing:.1em}
 .desc{color:var(--dim);font-size:.85rem;margin-top:8px}
 
